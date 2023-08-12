@@ -22,11 +22,24 @@ fs.open('input.txt', 'r+', function(error, fd) {
     }
     console.log("FILE OPEN SUCCESSFULLY !")
 
-    fs.read(fd, buf, 0, buf.length, 0, function(err, bytesRead) {
+    fs.read(fd, buf, 0, buf.length, 3, function(err, bytesRead) {
         if (err) {
             console.log("ERROR IN READING FILE")
         }
-        console.log("DATA :", bytesRead.toString())
+        console.log("Data :", bytesRead)
+        console.log("DATA :", buf.slice(0, bytesRead).toString())
+
     })
 })
+
+/* output :
+
+FILE OPEN SUCCESSFULLY !
+Data : 43
+DATA : lo, I am Priyanka
+I am learning Node.Js
+
+ */
+
+// Note : generally we are not reading file this way, we are using async method to read files (fileRead()).
 
